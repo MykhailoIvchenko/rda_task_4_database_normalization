@@ -1,3 +1,6 @@
+-- Drop the old database
+CREATE DATABASE ShopDB;
+
 -- Create database and tables
 
 CREATE DATABASE ShopDB;
@@ -13,7 +16,7 @@ CREATE TABLE Cities (
 		ID INT AUTO_INCREMENT,
 		Name VARCHAR(50),
 		CountryID INT,
-		FOREIGN KEY (CountryID) REFERENCES Countries(ID) ON DELETE NO ACTION,
+		FOREIGN KEY (CountryID) REFERENCES Countries(ID) ON DELETE CASCADE,
 		PRIMARY KEY (ID)
 );
 
@@ -21,7 +24,7 @@ CREATE TABLE Addresses (
 		ID INT AUTO_INCREMENT,
 		StreetName VARCHAR(100),
 		CityID INT,
-		FOREIGN KEY (CityID) REFERENCES Cities(ID) ON DELETE NO ACTION,
+		FOREIGN KEY (CityID) REFERENCES Cities(ID) ON DELETE CASCADE,
 		PRIMARY KEY (ID)
 );
 
@@ -29,7 +32,7 @@ CREATE TABLE Warehouses (
 		ID INT AUTO_INCREMENT,
 		Name VARCHAR(50),
 		AddressID INT,
-		FOREIGN KEY (AddressID) REFERENCES Addresses(ID) ON DELETE NO ACTION,
+		FOREIGN KEY (AddressID) REFERENCES Addresses(ID) ON DELETE CASCADE,
 		PRIMARY KEY (ID)
 )
 
@@ -38,7 +41,7 @@ CREATE TABLE ProductInventory (
 		ProductName VARCHAR(50),
 		WarehouseAmount INT,
 		WarehouseID INT,
-		FOREIGN KEY (WarehouseID) REFERENCES Warehouses(ID) ON DELETE NO ACTION,
+		FOREIGN KEY (WarehouseID) REFERENCES Warehouses(ID) ON DELETE CASCADE,
 		PRIMARY KEY (ID)
 );
 
@@ -63,7 +66,7 @@ INSERT INTO Addresses(StreetName, CityID)
 
 INSERT INTO Warehouses (Name, AddressID)
 	VALUES ('Warehouse-1', 1)
-INSERT INTO ProductInventory (ProductName,WarehouseAmount, WarehouseID)
+INSERT INTO ProductInventory (ProductName, WarehouseAmount, WarehouseID)
 	VALUES ('AwersomeProduct', 2, 1);
-INSERT INTO ProductInventory (ProductName,WarehouseAmount, WarehouseID)
+INSERT INTO ProductInventory (ProductName, WarehouseAmount, WarehouseID)
 	VALUES ('AwersomeProduct', 5, 2);
