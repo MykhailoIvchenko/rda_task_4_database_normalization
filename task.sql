@@ -1,5 +1,5 @@
 -- Drop the old database
-CREATE DATABASE ShopDB;
+DROP DATABASE ShopDB;
 
 -- Create database and tables
 
